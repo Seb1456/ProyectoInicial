@@ -1,0 +1,23 @@
+#BlueJ class context
+comment0.target=Store
+comment1.params=money\ pos
+comment1.target=Store(int,\ int)
+comment10.params=
+comment10.target=void\ resetColor()
+comment2.params=
+comment2.target=void\ restock()
+comment3.params=visible
+comment3.target=void\ show(boolean)
+comment4.params=
+comment4.target=void\ depleteStock()
+comment5.params=
+comment5.target=int\ getFunds()
+comment6.params=
+comment6.target=boolean\ isInStock()
+comment7.params=
+comment7.target=void\ remove()
+comment8.params=
+comment8.target=int\ getPosition()
+comment9.params=
+comment9.target=void\ changeColor()
+numComments=11

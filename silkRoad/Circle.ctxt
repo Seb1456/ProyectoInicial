@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Circle
+comment1.params=y\ x\ size\ col
+comment1.target=Circle(int,\ int,\ int,\ java.awt.Color)
+comment2.params=visible
+comment2.target=void\ show(boolean)
+comment3.params=
+comment3.target=void\ render()
+comment4.params=
+comment4.target=void\ clear()
+comment5.params=newY\ newX
+comment5.target=void\ moveTo(int,\ int)
+numComments=6

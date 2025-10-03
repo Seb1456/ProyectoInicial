@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=Robot
+comment1.params=pos
+comment1.target=Robot(int)
+comment2.params=steps\ reset
+comment2.target=void\ moveTo(int,\ boolean)
+comment3.params=
+comment3.target=int\ getFunds()
+comment4.params=visible
+comment4.target=void\ show(boolean)
+comment5.params=
+comment5.target=boolean\ isVisible()
+comment6.params=amount
+comment6.target=void\ collectFunds(int)
+comment7.params=
+comment7.target=void\ remove()
+comment8.params=times
+comment8.target=void\ blink(int)
+numComments=9
