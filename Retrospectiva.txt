@@ -1,0 +1,18 @@
+1. ¿Cuáles fueron los mini-ciclos definidos? Justifíquenlos.
+Hicimos 3 mini-ciclos. En el ciclo 1 corregimos los métodos de la clase SilkRoad, como lo es el método de robots(), que quedo como getAllRobots(), se corrigió también para el de placeRobot() y el método placeStore(), para que se puedan poner una store y un robot en el mismo lugar, luego se corrigió isVisible de la clase Robot.
+En el ciclo 2 se establecieron los nuevos métodos para la clase SilkRoad y para la clase Robot, los cuales son bestProfit(), emptiedStores(), el método moveRobots() y el método profitPerMove()de la clase SilkRoad, de la clase Robot se creó el método blink() y el método isVisible().
+En el ciclo 3 creamos las pruebas de unidad, creamos pruebas para shouldPlaceStore(), shouldNotPlaceStore(), shouldRemoveStore(), shouldPlaceRobot(), shouldNotPlaceRobot(), shouldRemoveRobot(), shoulMoveRobot(), shouldNotMoveRobot(), shouldRessuplyStores(), shouldReturnRobots(), shouldRemoveGain(), shouldShowProfit(), shouldMakeVisible(), shouldMakeInvisible(), shouldMoveRobots(). 
+2. ¿Cuál es el estado actual del proyecto en términos de mini-ciclos? ¿por qué?
+Se termino los miniciclos, hubo una dificultad con el método de profitPerMove ya que no se sabía el como implementarlo o que tenia que hacer el método, el propósito del método en si, en los métodos y las pruebas se implementaron varias pruebas y los diagramas de secuencia para cada método nuevo.
+3. ¿Cuál fue el tiempo total invertido por cada uno de ustedes? (Horas/Nombre)
+18 horas Sebastian Granados
+18 horas Daniel Valero
+4. ¿Cuál consideran fue el mayor logro? ¿Por qué?
+Poder graficar la road fue uno de los retos, hacer que se cree bien con los robots y las stores nuevas, asimismo terminar el diagrama de clases fue un gran avance.
+5. ¿Cuál consideran que fue el mayor problema técnico? ¿Qué hicieron para resolverlo?
+Hacer funcionar las posiciones de las coordenadas en el canvas para hacer que la road estuviera alineada con los robots y las tiendas, el metodo blink tambien fue un problema porque desconociamos como implementar pausas entre cada parpadeo, lo resolvimos con la ayuda del profe. 
+6. ¿Qué hicieron bien como equipo? ¿Qué se comprometen a hacer para mejorar los resultados?
+En este ciclo pudimos desarrollar el proyecto de mejor manera al implementar mas PairProgramming, de igual forma pues resolvimos juntos nuestras dudas con el profesor, nos comprometemos a seguir trabajando de esta manera para que estemos parejos a nivel de conocimineto y el proyecto no se vea descompensado a nivel de diseño y de codigo.
+7. Considerando las prácticas XP incluidas en los laboratorios. ¿cuál fue la más útil? ¿por qué?
+PairProgramming nos resulta la mas util porque nos ayuda a socializar y compartir diferente informacion, ya sea para la logica para implementarla en el codigo .
+8. ¿Qué referencias usaron? ¿Cuál fue la más útil? Incluyan citas con estándares adecuados.
