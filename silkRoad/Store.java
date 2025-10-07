@@ -20,6 +20,7 @@ public class Store {
     private final Rectangle facade;
     private final Triangle roof;
     private Color initialColor;
+    private int emptiedCount = 0; 
 
     public Store(int money, int pos) {
         this.funds = money;
@@ -35,6 +36,14 @@ public class Store {
 
     public void restock() {
         this.inStock = true;
+    }
+    
+    public void incrementEmptiedCount() {
+    emptiedCount++;
+    }
+
+    public int getEmptiedCount() {
+    return emptiedCount;
     }
 
     public void show(boolean visible) {

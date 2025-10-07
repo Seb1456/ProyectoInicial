@@ -1,7 +1,5 @@
 import javax.swing.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class SilkRoad {
     public static final int MAX_LENGTH = 17;
@@ -58,14 +56,60 @@ public class SilkRoad {
         notifyUser(msg, JOptionPane.INFORMATION_MESSAGE);
     }
 
-    public static void main(String[] args) {
-        int length = Integer.parseInt(
-            JOptionPane.showInputDialog(null, "Enter road length [1, 17]", TITLE, JOptionPane.INFORMATION_MESSAGE)
-        );
-        if (length <= 0 || length > MAX_LENGTH) {
-            JOptionPane.showMessageDialog(null, "Invalid length", TITLE + " - Error", JOptionPane.ERROR_MESSAGE);
-            return;
+        public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+    
+        int n = sc.nextInt();
+        int[][] events = new int[n][];
+    
+        for (int i = 0; i < n; i++) {
+            int type = sc.nextInt();
+            int pos = sc.nextInt();
+            if (type == 1) {
+                events[i] = new int[]{type, pos};
+            } else {
+                int funds = sc.nextInt();
+                events[i] = new int[]{type, pos, funds};
+            }
         }
+    
+        SilkRoad road = new SilkRoad(17);
+        road.days(events);
+        System.out.println(road.profit());
+    }
+
+        public void days(int[][] events) {
+        reboot();
+        int n = events.length;
+    
+        for (int day = 0; day < n; day++) {
+            int[] event = events[day];
+            if (event.length < 2) {
+                success = false;
+                return;
+            }
+    
+            int type = event[0];
+            int position = event[1];
+    
+            if (type == 1) {
+                placeRobot(position);
+            } else if (type == 2) {
+                if (event.length < 3) {
+                    success = false;
+                    return;
+                }
+                int funds = event[2];
+                placeStore(position, funds);
+            } else {
+                success = false;
+                return;
+            }
+    
+            reboot();
+        }
+    
+        success = true;
     }
 
     public void placeStore(int pos, int funds) {
@@ -122,9 +166,10 @@ public class SilkRoad {
 
         if (stores[pos] != null && stores[pos].isInStock()) {
             int funds = stores[pos].getFunds();
-            robot.collectFunds(funds);
+            robot.addProfit(funds);
             stores[pos].depleteStock();
             stores[pos].changeColor();
+            stores[pos].incrementEmptiedCount();
             profit += funds;
             updateBar();
         }
@@ -169,9 +214,10 @@ public class SilkRoad {
 
             if (stores[newPos] != null && stores[newPos].isInStock()) {
                 int funds = stores[newPos].getFunds();
-                robot.collectFunds(funds);
+                robot.addProfit(funds);
                 stores[newPos].depleteStock();
                 stores[newPos].changeColor();
+                stores[pos].incrementEmptiedCount();
                 profit += funds;
                 updateBar();
             }
@@ -317,7 +363,16 @@ public class SilkRoad {
 
         success = true;
     }
-    
+    public int[] getStoreEmptyCounts() {
+        int[] counts = new int[roadLength];
+        for (int i = 0; i < roadLength; i++) {
+            if (stores[i] != null) {
+            counts[i] = stores[i].getEmptiedCount();
+            }
+        }
+        return counts;
+    }
+
     public int[][] emptiedStores() {
         List<Store> emptiedStores = new ArrayList<>();
         for (int i = 0; i < roadLength; i++) {
@@ -350,31 +405,52 @@ public class SilkRoad {
 
         return result;
     }
-
-    public void moveRobots(int steps) {
+        public int[][] profitPerMove() {
         List<Robot> allRobots = getAllRobots();
-
+        List<int[]> resultList = new ArrayList<>();
+    
         for (Robot r : allRobots) {
-            int pos = -1;
-            for (int i = 0; i < roadLength; i++) {
-                if (robots.get(i).contains(r)) {
-                    pos = i;
-                    break;
+            List<Integer> gains = r.getProfitHistory();
+            int[] row = new int[gains.size() + 1];
+            row[0] = r.getPosition();
+            for (int i = 0; i < gains.size(); i++) {
+                row[i + 1] = gains.get(i);
+            }
+            resultList.add(row);
+        }
+    
+        resultList.sort(Comparator.comparingInt(a -> a[0]));
+    
+        int[][] result = new int[resultList.size()][];
+        for (int i = 0; i < resultList.size(); i++) {
+            result[i] = resultList.get(i);
+        }
+    
+        for (int[] row : result) {
+            System.out.println(Arrays.toString(row));
+        }
+    
+        return result;
+    }
+
+
+    public void moveRobots() {
+        for (int pos = 0; pos < roadLength; pos++) {
+            if (!robots.get(pos).isEmpty()) {
+                Robot robot = robots.get(pos).get(0);
+                int bestPos = -1;
+                int maxFunds = -1;
+                for (int i = 0; i < roadLength; i++) {
+                    if (stores[i] != null && stores[i].isInStock() && stores[i].getFunds() > maxFunds) {
+                        bestPos = i;
+                        maxFunds = stores[i].getFunds();
+                    }
+                }
+                if (bestPos != -1 && bestPos != pos) {
+                    moveRobot(pos, bestPos - pos);
                 }
             }
-
-            if (pos == -1) continue;
-
-            int newPos = pos + steps;
-            if (newPos >= 0 && newPos < roadLength) {
-                moveRobot(pos, steps);
-            } else {
-                notifyUser("Robot at position " + pos + " cannot be moved " + steps + " steps", JOptionPane.ERROR_MESSAGE);
-                success = false;
-                return;
-            }
         }
-        success = true;
     }
 }
 

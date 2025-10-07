@@ -1,6 +1,6 @@
 import java.awt.Color;
 import java.lang.Thread;
-
+import java.util.*;
 public class Robot {
     private static final Color[] COLORS = {Color.RED, Color.BLUE, Color.GREEN, Color.MAGENTA, Color.CYAN};
     private static final int[][] POSITIONS = {
@@ -16,6 +16,7 @@ public class Robot {
     private int collectedFunds;
     private final Circle body;
     private boolean isVisible;
+    private List<Integer> profitHistory = new ArrayList<>();
 
     public Robot(int pos) {
         this.position = pos;
@@ -39,6 +40,10 @@ public class Robot {
     public int getFunds() {
         return collectedFunds;
     }
+    
+    public int getPosition(){
+        return position;
+    }
 
     public void show(boolean visible) {
         this.isVisible = visible;
@@ -47,6 +52,14 @@ public class Robot {
     
     public boolean isVisible(){
         return isVisible;
+    }
+    public void addProfit(int amount) {
+        collectedFunds += amount;
+        profitHistory.add(amount);
+    }
+
+    public List<Integer> getProfitHistory() {
+        return new ArrayList<>(profitHistory);
     }
     
     public void collectFunds(int amount) {

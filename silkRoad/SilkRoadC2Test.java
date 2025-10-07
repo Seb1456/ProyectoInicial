@@ -211,7 +211,7 @@ public class SilkRoadC2Test {
     @Test
     public void accordingGVShouldMoveAllRobots() {
         game.placeRobot(5);
-        game.moveRobots(2);
+        game.moveRobots();
         assertTrue("La operación debe ser válida", game.ok());
         assertEquals("Debe seguir existiendo 1 robot tras moveRobots", 1, game.getRobotCount());
     }
@@ -222,7 +222,7 @@ public class SilkRoadC2Test {
     @Test
     public void accordingGVShouldNotMoveRobotsOutOfBounds() {
         game.placeRobot(0);
-        game.moveRobots(-1);
+        game.moveRobots();
         assertFalse("La operación debe ser inválida", game.ok());
     }
     
