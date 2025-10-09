@@ -55,29 +55,33 @@ public class SilkRoad {
     private void notifyUser(String msg) {
         notifyUser(msg, JOptionPane.INFORMATION_MESSAGE);
     }
-
-        public static void main(String[] args) {
+    public int getLength(){
+        return MAX_LENGTH;
+    }
+    
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
     
         int n = sc.nextInt();
-        int[][] events = new int[n][];
+        int[][] days = new int[n][];
     
         for (int i = 0; i < n; i++) {
             int type = sc.nextInt();
             int pos = sc.nextInt();
             if (type == 1) {
-                events[i] = new int[]{type, pos};
+                days[i] = new int[]{type, pos};
             } else {
                 int funds = sc.nextInt();
-                events[i] = new int[]{type, pos, funds};
+                days[i] = new int[]{type, pos, funds};
             }
         }
-    
-        SilkRoad road = new SilkRoad(17);
-        road.days(events);
-        System.out.println(road.profit());
+        SilkRoadContest contest = new SilkRoadContest();
+        int[] profits = contest.solve(days);
+        for (int profit : profits){
+        System.out.println(profit);
+        }
+        sc.close();
     }
-
         public void days(int[][] events) {
         reboot();
         int n = events.length;
@@ -217,7 +221,9 @@ public class SilkRoad {
                 robot.addProfit(funds);
                 stores[newPos].depleteStock();
                 stores[newPos].changeColor();
-                stores[pos].incrementEmptiedCount();
+                if (this.stores[pos] != null){
+                    stores[pos].incrementEmptiedCount();
+                }
                 profit += funds;
                 updateBar();
             }
@@ -261,10 +267,10 @@ public class SilkRoad {
     }
 
     public int profit() {
-        notifyUser("Profit: " + profit, JOptionPane.INFORMATION_MESSAGE);
         success = true;
         return profit;
     }
+
 
     public int[][] stores() {
         int[][] data = new int[MAX_LENGTH][2];

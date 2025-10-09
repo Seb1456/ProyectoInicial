@@ -1,11 +1,12 @@
 #BlueJ class context
 comment0.target=SilkRoadContest
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ SilkRoadContest\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
 comment1.params=road\ event
 comment1.target=void\ procesarEvento(SilkRoad,\ int[])
-comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ SilkRoadContest\r\n
+comment1.text=\r\n\ Determina\ cada\ posici\u00F3n\ de\ un\ arreglo\ y\ su\ descripci\u00F3n\ y\ funcionalidad.\r\n
 comment2.params=days
 comment2.target=int[]\ solve(int[][])
+comment2.text=\r\n\ Resuelve\ el\ problema\ de\ la\ marat\u00F3n.\r\n
 comment3.params=days\ slow
 comment3.target=void\ simulate(int[][],\ boolean)
+comment3.text=\r\n\ Simula\ el\ problema\ de\ la\ silkroad.\r\n
 numComments=4
