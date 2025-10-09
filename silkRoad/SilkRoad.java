@@ -1,6 +1,12 @@
 import javax.swing.*;
 import java.util.*;
 
+/**
+ * Clase que representa la simulación del juego SilkRoad con robots y tiendas.
+ * 
+ * @author Sebastián Granados - Daniel Valero
+ * @version 1.0
+ */
 public class SilkRoad {
     public static final int MAX_LENGTH = 17;
     public static final int SEGMENT_SIZE = 100;
@@ -20,7 +26,11 @@ public class SilkRoad {
     private final int[] robotPresence;
     private boolean success;
     private boolean testing = false;
-
+    
+    /**
+     * Constructor principal de SilkRoad.
+     * @param length longitud de la carretera (número de posiciones).
+     */
     public SilkRoad(int length) {
         this.roadLength = length;
         this.stores = new Store[MAX_LENGTH];
@@ -40,21 +50,37 @@ public class SilkRoad {
             new Road(COORDINATES[i][0], COORDINATES[i][1]);
         }
     }
-
+    
+    /**
+     * Constructor de SilkRoad con modo de prueba.
+     * @param length longitud de la carretera.
+     * @param testing si es true, desactiva mensajes gráficos.
+     */
     public SilkRoad(int length, boolean testing) {
         this(length);
         this.testing = testing;
     }
-
+    /**
+     * Muestra un mensaje al usuario.
+     * @param msg mensaje a mostrar
+     * @param type tipo de mensaje de JOptionPane
+     */
     private void notifyUser(String msg, int type) {
         if (!testing) {
             JOptionPane.showMessageDialog(null, msg, TITLE, type);
         }
     }
-
+    /**
+     * Muestra un mensaje de información al usuario.
+     * @param msg mensaje a mostrar
+     */
     private void notifyUser(String msg) {
         notifyUser(msg, JOptionPane.INFORMATION_MESSAGE);
     }
+    /**
+     * Retorna la longitud máxima de la carretera.
+     * @return longitud máxima
+     */
     public int getLength(){
         return MAX_LENGTH;
     }
@@ -82,7 +108,11 @@ public class SilkRoad {
         }
         sc.close();
     }
-        public void days(int[][] events) {
+    /**
+     * Procesa una serie de eventos de días.
+     * @param events matriz de eventos, cada fila es {tipo, posición, [fondos]}
+     */
+    public void days(int[][] events) {
         reboot();
         int n = events.length;
     
@@ -115,7 +145,11 @@ public class SilkRoad {
     
         success = true;
     }
-
+    /**
+     * Coloca una tienda en una posición específica.
+     * @param pos posición en la carretera
+     * @param funds cantidad de fondos disponibles en la tienda
+     */
     public void placeStore(int pos, int funds) {
         if (pos < 0 || pos >= roadLength || funds <= 0) {
             notifyUser("Invalid store parameters", JOptionPane.ERROR_MESSAGE);
@@ -133,7 +167,10 @@ public class SilkRoad {
         success = true;
         System.out.println("Store placed at " + pos + ", total funds: " + fundsTotal);
     }
-
+    /**
+     * Elimina la tienda de una posición específica.
+     * @param pos posición en la carretera
+     */
     public void removeStore(int pos) {
         if (pos < 0 || pos >= roadLength) {
             notifyUser("Invalid position", JOptionPane.ERROR_MESSAGE);
@@ -152,7 +189,10 @@ public class SilkRoad {
         success = true;
         System.out.println("Store removed from " + pos + ", total funds: " + fundsTotal);
     }
-
+    /**
+     * Coloca un robot en una posición específica.
+     * @param pos posición del robot
+     */
     public void placeRobot(int pos) {
         if (pos < 0 || pos >= roadLength) {
             notifyUser("Invalid position", JOptionPane.ERROR_MESSAGE);
@@ -179,7 +219,10 @@ public class SilkRoad {
         }
         success = true;
     }
-
+    /**
+     * Elimina un robot de una posición específica.
+     * @param pos posición del robot
+     */
     public void removeRobot(int pos) {
         if (pos < 0 || pos >= roadLength) {
             notifyUser("Invalid position", JOptionPane.ERROR_MESSAGE);
@@ -196,7 +239,11 @@ public class SilkRoad {
         robotPresence[pos] = 0;
         success = true;
     }
-
+    /**
+     * Mueve un robot desde una posición actual.
+     * @param pos posición inicial del robot
+     * @param steps cantidad de pasos a mover (positivos o negativos)
+     */
     public void moveRobot(int pos, int steps) {
         if (pos < 0 || pos >= roadLength || pos + steps < 0 || pos + steps >= roadLength) {
             notifyUser("Invalid move parameters", JOptionPane.ERROR_MESSAGE);
@@ -232,7 +279,9 @@ public class SilkRoad {
         robots.get(finalPos).add(robot);
         success = true;
     }
-
+    /**
+     * Reabastece todas las tiendas vacías.
+     */
     public void resupplyStores() {
         for (int i = 0; i < roadLength; i++) {
             Store store = stores[i];
@@ -247,7 +296,9 @@ public class SilkRoad {
         updateBar();
         success = true;
     }
-
+    /**
+     * Devuelve todos los robots a su posición inicial.
+     */
     public void returnRobots() {
         for (int i = 0; i < MAX_LENGTH; i++) {
             for (Robot robot : robots.get(i)) {
@@ -256,7 +307,9 @@ public class SilkRoad {
         }
         success = true;
     }
-
+    /**
+     * Reinicia la simulación.
+     */
     public void reboot() {
         resupplyStores();
         returnRobots();
@@ -265,13 +318,18 @@ public class SilkRoad {
         updateBar();
         success = true;
     }
-
+    /**
+     * Devuelve la ganancia total actual.
+     * @return ganancia total
+     */
     public int profit() {
         success = true;
         return profit;
     }
-
-
+    /**
+     * Devuelve los datos de todas las tiendas.
+     * @return matriz [posición, fondos]
+     */
     public int[][] stores() {
         int[][] data = new int[MAX_LENGTH][2];
         for (int i = 0; i < MAX_LENGTH; i++) {
@@ -282,7 +340,10 @@ public class SilkRoad {
         success = true;
         return data;
     }
-
+    /**
+     * Devuelve todos los robots.
+     * @return lista de robots
+     */
     public List<Robot> getAllRobots() {
         List<Robot> currentRobots = new ArrayList<>();
         for (int i = 0; i < MAX_LENGTH; i++) {
@@ -291,7 +352,9 @@ public class SilkRoad {
         success = true;
         return currentRobots;
     }
-
+    /**
+     * Muestra todos los objetos gráficos.
+     */
     public void makeVisible() {
         if (testing) return;
         for (int i = 0; i < MAX_LENGTH; i++) {
@@ -304,7 +367,9 @@ public class SilkRoad {
         }
         success = true;
     }
-
+    /**
+     * Oculta todos los objetos gráficos.
+     */
     public void makeInvisible() {
         if (testing) return;
         for (int i = 0; i < MAX_LENGTH; i++) {
@@ -317,12 +382,17 @@ public class SilkRoad {
         }
         success = true;
     }
-
+    /**
+     * Finaliza la simulación y cierra la aplicación.
+     */
     public void finish() {
         success = true;
         System.exit(0);
     }
-
+    /**
+     * Devuelve el número de tiendas activas.
+     * @return cantidad de tiendas
+     */
     public int getStoreCount() {
         int count = 0;
         for (Store s : stores) {
@@ -330,7 +400,10 @@ public class SilkRoad {
         }
         return count;
     }
-
+    /**
+     * Devuelve el número de robots activos.
+     * @return cantidad de robots
+     */
     public int getRobotCount() {
         int count = 0;
         for (int i = 0; i < MAX_LENGTH; i++) {
@@ -338,17 +411,24 @@ public class SilkRoad {
         }
         return count;
     }
-    
+    /**
+     * Indica si la última operación fue exitosa.
+     * @return true si tuvo éxito, false si falló
+     */
     public boolean ok() {
         notifyUser(success ? "Success" : "Failed", success ? JOptionPane.PLAIN_MESSAGE : JOptionPane.ERROR_MESSAGE);
         return success;
     }
-    
+    /**
+     * Actualiza la barra de progreso en Canvas.
+     */
     public void updateBar() {
         int percentage = fundsTotal == 0 ? 0 : (int) ((double) profit / fundsTotal * 100);
         Canvas.setProgress(percentage);
     }
-    
+    /**
+     * Marca el robot con mayor ganancia haciendo parpadear.
+     */
     public void bestProfit() {
         List<Robot> datos = getAllRobots();
 
@@ -369,6 +449,10 @@ public class SilkRoad {
 
         success = true;
     }
+    /**
+     * Obtiene la cantidad de veces que cada tienda ha sido vaciada.
+     * @return arreglo con conteo de tiendas vaciadas
+     */
     public int[] getStoreEmptyCounts() {
         int[] counts = new int[roadLength];
         for (int i = 0; i < roadLength; i++) {
@@ -378,7 +462,10 @@ public class SilkRoad {
         }
         return counts;
     }
-
+    /**
+     * Devuelve información de las tiendas vacías.
+     * @return matriz [posición, fondos] de tiendas vacías
+     */
     public int[][] emptiedStores() {
         List<Store> emptiedStores = new ArrayList<>();
         for (int i = 0; i < roadLength; i++) {
@@ -411,6 +498,10 @@ public class SilkRoad {
 
         return result;
     }
+    /**
+     * Devuelve la ganancia de cada robot por movimiento.
+     * @return matriz con cada fila [posición inicial, ganancias por movimiento...]
+     */
         public int[][] profitPerMove() {
         List<Robot> allRobots = getAllRobots();
         List<int[]> resultList = new ArrayList<>();
@@ -438,8 +529,9 @@ public class SilkRoad {
     
         return result;
     }
-
-
+    /**
+     * Mueve todos los robots automáticamente hacia la mejor tienda.
+     */
     public void moveRobots() {
         for (int pos = 0; pos < roadLength; pos++) {
             if (!robots.get(pos).isEmpty()) {

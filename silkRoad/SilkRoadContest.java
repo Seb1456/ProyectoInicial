@@ -1,9 +1,15 @@
+import java.util.*;
+/**
+ * Clase para manejar eventos y resolver la simulación de SilkRoad.
+ */
 public class SilkRoadContest
 {
     private int[] profits;
 
     /**
-     * Determina cada posición de un arreglo y su descripción y funcionalidad.
+     * Procesa un evento en SilkRoad.
+     * @param road instancia de SilkRoad
+     * @param event arreglo que contiene {tipo, posición, [fondos]}
      */
     private void procesarEvento(SilkRoad road, int[] event){
         int type = event[0];
@@ -19,7 +25,9 @@ public class SilkRoadContest
     
     }
     /**
-     * Resuelve el problema de la maratón.
+     * Resuelve la simulación y devuelve la ganancia por día.
+     * @param days matriz de eventos
+     * @return arreglo con ganancias por día
      */
     public int[] solve(int[][] days) {
         SilkRoad road = new SilkRoad(SilkRoad.MAX_LENGTH, false);
@@ -35,7 +43,9 @@ public class SilkRoadContest
         return profits;
     }
     /**
-     * Simula el problema de la silkroad.
+     * Simula SilkRoad con visualización.
+     * @param days matriz de eventos
+     * @param slow true para simulación lenta
      */
     public void simulate(int[][] days, boolean slow) {
         SilkRoad road = new SilkRoad(SilkRoad.MAX_LENGTH, false);
