@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=Canvas
+comment1.params=
+comment1.target=Canvas\ getInstance()
+comment2.params=title\ width\ height\ bg
+comment2.target=Canvas(java.lang.String,\ int,\ int,\ java.awt.Color)
+comment3.params=visible
+comment3.target=void\ setVisible(boolean)
+comment4.params=obj\ color\ shape
+comment4.target=void\ render(java.lang.Object,\ java.awt.Color,\ Shape)
+comment5.params=obj
+comment5.target=void\ clear(java.lang.Object)
+comment6.params=ms
+comment6.target=void\ pause(int)
+comment7.params=
+comment7.target=void\ update()
+comment8.params=
+comment8.target=void\ clearCanvas()
+comment9.params=value
+comment9.target=void\ setProgress(int)
+numComments=10
