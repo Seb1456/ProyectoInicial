@@ -1,7 +1,0 @@
-#BlueJ class context
-comment0.target=Road
-comment0.text=\r\n\ Representa\ un\ segmento\ de\ la\ carretera.\r\n
-comment1.params=y\ x
-comment1.target=Road(int,\ int)
-comment1.text=\r\n\ Constructor\ del\ segmento\ de\ carretera.\r\n\ @param\ y\ coordenada\ Y\r\n\ @param\ x\ coordenada\ X\r\n
-numComments=2

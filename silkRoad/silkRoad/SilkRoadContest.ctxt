@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=SilkRoadContest
+comment1.params=
+comment1.target=void\ solve()
+comment1.text=\r\n\ Resuelve\ el\ problema\ de\ la\ marat\u00F3n\r\n
+comment2.params=days
+comment2.target=int[]\ computeProfits(int[][])
+comment2.text=\r\n\ Calcula\ los\ beneficios\ d\u00EDa\ a\ d\u00EDa,\ reutilizando\ la\ clase\ SilkRoad\ (para\ los\ tests)\r\n
+comment3.params=slow
+comment3.target=void\ simulate(boolean)
+comment3.text=\r\n\ Simula\ visualmente\ \ los\ eventos\ con\ entradas\ del\ problema.\r\n\ @param\ slow\ true\ para\ simular\ m\u00E1s\ lento\r\n
+numComments=4

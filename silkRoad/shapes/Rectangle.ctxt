@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=Rectangle
+comment1.params=y\ x\ width\ height\ color
+comment1.target=Rectangle(int,\ int,\ int,\ int,\ java.awt.Color)
+comment2.params=
+comment2.target=void\ render()
+numComments=3
