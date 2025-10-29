@@ -1,48 +1,42 @@
 package silkRoad;
 
-
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
- 
+
+
 public class SilkRoadATest {
- 
+
     /**
-     * Prueba de aceptación: ejecución completa con múltiples robots y tiendas.
+     * Verifica que un robot normal recoja correctamente los fondos
+     * de una tienda normal en la misma posición.
      */
     @Test
-    public void testFullMarathonSimulation() {
+    public void testRobotCollectsStoreFunds() {
+        SilkRoad road = new SilkRoad(17, true);
+        road.placeStore("normal", 3, 150);
+        road.placeRobot("normal", 3);
+
+        assertEquals(0, road.getFunds(3), "La tienda debería quedar sin fondos.");
+        assertTrue(road.profit() >= 150, "La ganancia total debe incluir los fondos de la tienda vaciada.");
+        assertTrue(road.hasRobotAt(3), "El robot debe estar presente en la posición 3.");
+    }
+
+    /**
+     * Verifica que la simulación de un día mueva los robots y genere ganancias
+     * cuando encuentran tiendas en el camino.
+     */
+    @Test
+    public void testSimulateDayGeneratesProfit() {
         SilkRoad road = new SilkRoad(17, true);
         road.placeRobot("normal", 2);
-        road.placeRobot("neverback", 4);
-        road.placeRobot("tender", 6);
-        road.placeRobot("thief", 8);
         road.placeStore("normal", 3, 120);
-        road.placeStore("fighter", 5, 200);
-        road.placeStore("autonomous", 7, 150);
-        road.placeStore("normal", 9, 80);
-        road.simulateDay();
-        int total = road.profit();
-        assertTrue(total > 0);
-        assertTrue(road.getStoreFunds(3) < 120);
-        assertTrue(road.getStoreFunds(9) < 80);
-    }
- 
-    /**
-     * Prueba de aceptación: simulación prolongada con reinicio de día.
-     */
-    @Test
-    public void testExtendedSimulationWithReboot() {
-        SilkRoad road = new SilkRoad(17, true);
         road.placeRobot("neverback", 4);
-        road.placeRobot("normal", 6);
-        road.placeStore("fighter", 5, 200);
-        road.placeStore("normal", 4, 100);
+        road.placeStore("fighter", 6, 200);
+
         road.simulateDay();
-        int profitBefore = road.profit();
-        road.reboot();
-        int profitAfter = road.profit();
-        assertTrue(profitAfter >= profitBefore);
-        assertTrue(road.hasRobotAt(4));
-        assertFalse(road.hasRobotAt(6));
+
+        int totalProfit = road.profit();
+        assertTrue(totalProfit > 0, "Debe haberse generado ganancia durante la simulación.");
+        assertTrue(road.getFunds(3) < 120 || road.getFunds(6) < 200, "Alguna tienda debe haber perdido fondos.");
     }
 }

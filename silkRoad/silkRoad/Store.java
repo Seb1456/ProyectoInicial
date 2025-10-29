@@ -101,6 +101,7 @@ public class Store {
      * Vacía el stock de la tienda.
      */
     public void depleteStock() {
+        this.currentFunds = 0;
         this.inStock = false;
     }
     /**
@@ -117,6 +118,13 @@ public class Store {
      */
     public boolean isInStock() {
         return inStock;
+    }
+    /**
+     * Indica el tipo de tienda.
+     * @return el tipo de la tienda
+     */
+    public String getType() {
+        return type;
     }
     /**
      * Oculta la tienda visualmente.

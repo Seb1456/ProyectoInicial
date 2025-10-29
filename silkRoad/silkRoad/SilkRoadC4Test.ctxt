@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=SilkRoadC4Test
+comment1.params=
+comment1.target=void\ testNormalRobotAndStore()
+comment1.text=\r\n\ Verifica\ que\ un\ robot\ normal\ al\ colocarse\ en\ la\ misma\ posici\u00F3n\ que\ una\ tienda\ normal\r\n\ obtenga\ la\ totalidad\ de\ los\ fondos\ y\ que\ la\ tienda\ quede\ vac\u00EDa.\r\n
+comment2.params=
+comment2.target=void\ testNeverbackRobotDoesNotReturnOnReboot()
+comment2.text=\r\n\ Verifica\ que\ los\ robots\ del\ tipo\ neverback\ permanezcan\ en\ el\ camino\ tras\ ejecutar\ reboot(),\r\n\ mientras\ que\ los\ dem\u00E1s\ sean\ retirados.\r\n
+comment3.params=
+comment3.target=void\ testTenderRobotHalvesFunds()
+comment3.text=\r\n\ Verifica\ que\ el\ robot\ del\ tipo\ tender\ solo\ obtenga\ la\ mitad\ de\ los\ fondos\ disponibles\r\n\ y\ que\ la\ tienda\ permanezca\ parcialmente\ abastecida.\r\n
+comment4.params=
+comment4.target=void\ testThiefRobotStealsOneThird()
+comment4.text=\r\n\ Verifica\ que\ el\ robot\ del\ tipo\ thief\ robe\ un\ tercio\ de\ los\ fondos\ disponibles,\r\n\ y\ que\ los\ fondos\ de\ la\ tienda\ se\ reduzcan\ tras\ la\ interacci\u00F3n.\r\n
+comment5.params=
+comment5.target=void\ testAutonomousStorePlacedRandomly()
+comment5.text=\r\n\ Verifica\ que\ una\ tienda\ aut\u00F3noma\ se\ coloque\ en\ una\ posici\u00F3n\ aleatoria\ del\ camino,\r\n\ ignorando\ la\ posici\u00F3n\ pasada\ como\ par\u00E1metro\ al\ momento\ de\ creaci\u00F3n.\r\n
+comment6.params=
+comment6.target=void\ testFighterStoreExistsAndInteracts()
+comment6.text=\r\n\ Verifica\ la\ existencia\ y\ funcionamiento\ correcto\ de\ una\ tienda\ tipo\ fighter,\r\n\ asegurando\ que\ un\ robot\ normal\ pueda\ interactuar\ con\ ella\ y\ vaciar\ sus\ fondos.\r\n
+numComments=7

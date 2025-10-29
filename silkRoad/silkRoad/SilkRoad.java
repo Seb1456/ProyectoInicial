@@ -153,7 +153,7 @@ public class SilkRoad {
             stores[pos] = new Store("normal", funds, pos);
         } else if ("autonomous".equals(type)) {
             int nPos = new Random().nextInt(roadLength);
-            stores[pos] = new Store("autonomous", funds, nPos);
+            stores[nPos] = new Store("autonomous", funds, nPos);
         } else if ("fighter".equals(type)) {
             stores[pos] = new Store("fighter", funds, pos);
         }
@@ -527,6 +527,32 @@ public class SilkRoad {
 
         return result;
     }
+    public void simulateDay() {
+        for (int pos = 0; pos < roadLength; pos++) {
+            List<Robot> robotsAtPos = new ArrayList<>(robots.get(pos));
+            for (Robot robot : robotsAtPos) {
+                int steps = 1;
+                if ("neverback".equals(robot.getType())) steps = 2;
+    
+                int newPos = pos + steps;
+                if (newPos >= roadLength) newPos = roadLength - 1;
+    
+                moveRobot(pos, newPos - pos);
+            }
+        }
+    }
+    
+    public int getFunds(int pos) {
+        if (pos >= 0 && pos < stores.length && stores[pos] != null) {
+            return stores[pos].getFunds();
+        }
+        return 0;
+    }
+    
+    public boolean hasRobotAt(int pos) {
+        return pos >= 0 && pos < MAX_LENGTH && !robots.get(pos).isEmpty();
+    }
+
     /**
      * Devuelve la ganancia de cada robot por movimiento.
      * @return matriz con cada fila [posición inicial, ganancias por movimiento...]

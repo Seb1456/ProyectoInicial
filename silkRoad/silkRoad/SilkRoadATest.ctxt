@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=SilkRoadATest
+comment1.params=
+comment1.target=void\ testRobotCollectsStoreFunds()
+comment1.text=\r\n\ Verifica\ que\ un\ robot\ normal\ recoja\ correctamente\ los\ fondos\r\n\ de\ una\ tienda\ normal\ en\ la\ misma\ posici\u00F3n.\r\n
+comment2.params=
+comment2.target=void\ testSimulateDayGeneratesProfit()
+comment2.text=\r\n\ Verifica\ que\ la\ simulaci\u00F3n\ de\ un\ d\u00EDa\ mueva\ los\ robots\ y\ genere\ ganancias\r\n\ cuando\ encuentran\ tiendas\ en\ el\ camino.\r\n
+numComments=3
