@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=FighterStore
+comment0.text=\r\n\ Tienda\ fighter\ que\ solo\ puede\ ser\ robada\ por\ robots\ con\ m\u00E1s\ dinero\ que\ ella.\r\n
+comment1.params=money\ pos
+comment1.target=FighterStore(int,\ int)
+comment1.text=\r\n\ Constructor\ de\ la\ tienda\ fighter.\r\n\ @param\ money\ fondos\ de\ la\ tienda\r\n\ @param\ pos\ posici\u00F3n\ de\ la\ tienda\r\n
+comment2.params=robot
+comment2.target=boolean\ canBeRobbedBy(Robot)
+comment2.text=\r\n\ Una\ tienda\ fighter\ solo\ puede\ ser\ robada\ por\ robots\ que\ tengan\ m\u00E1s\ fondos\ que\ ella.\r\n\ @param\ robot\ robot\ que\ intenta\ robar\r\n\ @return\ true\ si\ el\ robot\ puede\ robarla\r\n
+numComments=3

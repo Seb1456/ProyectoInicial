@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=ThiefRobot
+comment0.text=\r\n\ Robot\ ladr\u00F3n\ que\ solo\ roba\ 1/3\ de\ los\ fondos\ de\ las\ tiendas.\r\n\ Respeta\ las\ restricciones\ de\ las\ tiendas\ fighter\ (necesita\ tener\ m\u00E1s\ fondos).\r\n
+comment1.params=pos
+comment1.target=ThiefRobot(int)
+comment1.text=\r\n\ Constructor\ del\ robot\ thief.\r\n\ @param\ pos\ posici\u00F3n\ inicial\ del\ robot\r\n
+comment2.params=store
+comment2.target=int\ collectFrom(Store)
+comment2.text=\r\n\ Recolecta\ 1/3\ de\ los\ fondos\ de\ la\ tienda.\r\n\ Para\ tiendas\ fighter,\ solo\ puede\ robar\ si\ tiene\ m\u00E1s\ fondos\ que\ ella.\r\n\ @param\ store\ tienda\ de\ la\ cual\ recolectar\r\n\ @return\ cantidad\ de\ dinero\ recolectado\r\n
+comment3.params=
+comment3.target=boolean\ canMoveBackward()
+comment3.text=\r\n\ El\ robot\ thief\ puede\ moverse\ hacia\ atr\u00E1s.\r\n\ @return\ true\r\n
+numComments=4

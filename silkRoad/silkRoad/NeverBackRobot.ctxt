@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=NeverBackRobot
+comment0.text=\r\n\ Robot\ que\ nunca\ se\ devuelve,\ solo\ avanza.\r\n
+comment1.params=pos
+comment1.target=NeverBackRobot(int)
+comment1.text=\r\n\ Constructor\ del\ robot\ neverback.\r\n\ @param\ pos\ posici\u00F3n\ inicial\ del\ robot\r\n
+comment2.params=store
+comment2.target=int\ collectFrom(Store)
+comment2.text=\r\n\ Recolecta\ todos\ los\ fondos\ disponibles\ de\ la\ tienda.\r\n\ @param\ store\ tienda\ de\ la\ cual\ recolectar\r\n\ @return\ cantidad\ de\ dinero\ recolectado\r\n
+comment3.params=
+comment3.target=boolean\ canMoveBackward()
+comment3.text=\r\n\ El\ robot\ neverback\ no\ puede\ moverse\ hacia\ atr\u00E1s.\r\n\ @return\ false\r\n
+numComments=4

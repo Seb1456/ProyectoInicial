@@ -6,45 +6,41 @@ import java.util.*;
 import shapes.*;
 
 /**
- * Representa un robot en la carretera SilkRoad que recoge fondos de las tiendas.
+ * Clase abstracta que representa un robot en la carretera SilkRoad.
  */
-public class Robot {
-    private static final Color[] COLORS = {Color.RED, Color.BLUE, Color.GREEN, Color.MAGENTA, Color.CYAN, Color.PINK};
-    private static final int[][] POSITIONS = {
+public abstract class Robot {
+    protected static final int[][] POSITIONS = {
         {50, 50}, {150, 50}, {250, 50}, {350, 50}, {450, 50},
         {450, 150}, {450, 250}, {450, 350}, {450, 450},
         {350, 450}, {250, 450}, {150, 450}, {50, 450},
         {50, 350}, {50, 250}, {150, 250}, {250, 250}
     };
-    private static final int SIZE = 25;
+    protected static final int SIZE = 25;
 
-    private final int origin;
-    private int position;
-    private int collectedFunds;
-    private final Circle body;
-    private boolean isVisible;
-    private List<Integer> profitHistory = new ArrayList<>();
-    private final String type;
+    protected final int origin;
+    protected int position;
+    protected int collectedFunds;
+    protected final Circle body;
+    protected boolean isVisible;
+    protected List<Integer> profitHistory = new ArrayList<>();
+    protected final String type;
     
     /**
      * Constructor del robot.
+     * @param type tipo del robot
      * @param pos posición inicial del robot
+     * @param color color del robot
      */
-    public Robot(String type, int pos) {
+    protected Robot(String type, int pos, Color color) {
         this.position = pos;
         this.origin = pos;
         this.type = type;
         this.collectedFunds = 0;
-        Color color;
-        if ("normal".equals(type)) color = Color.BLUE;
-        else if ("neverback".equals(type)) color = Color.RED;
-        else if ("tender".equals(type)) color = Color.GREEN;
-        else if ("thief".equals(type)) color = Color.PINK;
-        else color = Color.MAGENTA;
         this.body = new Circle(POSITIONS[pos][0], POSITIONS[pos][1], SIZE, color);
         this.body.show(true);
         this.isVisible = true;
     }
+    
     /**
      * Mueve el robot.
      * @param steps cantidad de pasos a mover
@@ -59,6 +55,7 @@ public class Robot {
         }
         this.body.moveTo(POSITIONS[position][0], POSITIONS[position][1]);
     }
+    
     /**
      * Obtiene los fondos recolectados por el robot.
      * @return fondos recolectados
@@ -66,6 +63,7 @@ public class Robot {
     public int getFunds() {
         return collectedFunds;
     }
+    
     /**
      * Obtiene la posición actual del robot.
      * @return posición actual
@@ -73,13 +71,15 @@ public class Robot {
     public int getPosition(){
         return position;
     }
+    
     /**
-     * Obtiene el tipo del robot entre normal, neverback y tender.
+     * Obtiene el tipo del robot.
      * @return tipo del robot 
      */
     public String getType(){
         return type;
     }
+    
     /**
      * Muestra u oculta el robot.
      * @param visible true para mostrar, false para ocultar
@@ -88,6 +88,7 @@ public class Robot {
         this.isVisible = visible;
         body.show(visible);
     }
+    
     /**
      * Indica si el robot está visible.
      * @return true si es visible
@@ -95,6 +96,7 @@ public class Robot {
     public boolean isVisible(){
         return isVisible;
     }
+    
     /**
      * Agrega ganancia al robot y la registra en historial.
      * @param amount cantidad de fondos recolectados
@@ -103,6 +105,7 @@ public class Robot {
         collectedFunds += amount;
         profitHistory.add(amount);
     }
+    
     /**
      * Obtiene el historial de ganancias del robot.
      * @return lista de ganancias por movimiento
@@ -110,6 +113,7 @@ public class Robot {
     public List<Integer> getProfitHistory() {
         return new ArrayList<>(profitHistory);
     }
+    
     /**
      * Suma fondos directamente al robot.
      * @param amount cantidad de fondos
@@ -117,12 +121,14 @@ public class Robot {
     public void collectFunds(int amount) {
         this.collectedFunds += amount;
     }
+    
     /**
      * Elimina el robot visualmente.
      */
     public void remove() {
         body.show(false);
     }   
+    
     /**
      * Hace parpadear el robot para destacarlo.
      * @param times número de parpadeos
@@ -143,6 +149,19 @@ public class Robot {
             show(true); 
         }
     }
+    
+    /**
+     * Método abstracto para determinar cuánto dinero recolecta el robot de una tienda.
+     * @param store tienda de la cual recolectar
+     * @return cantidad de dinero recolectado
+     */
+    public abstract int collectFrom(Store store);
+    
+    /**
+     * Método abstracto para determinar si el robot puede moverse hacia atrás.
+     * @return true si puede moverse hacia atrás
+     */
+    public abstract boolean canMoveBackward();
 }
 
 

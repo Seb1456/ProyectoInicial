@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=NormalStore
+comment0.text=\r\n\ Tienda\ normal\ que\ puede\ ser\ robada\ por\ cualquier\ robot.\r\n
+comment1.params=money\ pos
+comment1.target=NormalStore(int,\ int)
+comment1.text=\r\n\ Constructor\ de\ la\ tienda\ normal.\r\n\ @param\ money\ fondos\ de\ la\ tienda\r\n\ @param\ pos\ posici\u00F3n\ de\ la\ tienda\r\n
+comment2.params=robot
+comment2.target=boolean\ canBeRobbedBy(Robot)
+comment2.text=\r\n\ Una\ tienda\ normal\ puede\ ser\ robada\ por\ cualquier\ robot.\r\n\ @param\ robot\ robot\ que\ intenta\ robar\r\n\ @return\ true\ siempre\r\n
+numComments=3

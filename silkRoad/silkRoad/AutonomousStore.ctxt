@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=AutonomousStore
+comment0.text=\r\n\ Tienda\ aut\u00F3noma\ que\ escoge\ su\ propia\ posici\u00F3n\ al\ ser\ creada.\r\n
+comment1.params=money\ suggestedPos
+comment1.target=AutonomousStore(int,\ int)
+comment1.text=\r\n\ Constructor\ de\ la\ tienda\ aut\u00F3noma.\r\n\ Escoge\ una\ posici\u00F3n\ aleatoria\ ignorando\ la\ posici\u00F3n\ sugerida.\r\n\ @param\ money\ fondos\ de\ la\ tienda\r\n\ @param\ suggestedPos\ posici\u00F3n\ sugerida\ (ser\u00E1\ ignorada)\r\n
+comment2.params=
+comment2.target=int\ chooseRandomPosition()
+comment2.text=\r\n\ Escoge\ una\ posici\u00F3n\ aleatoria\ v\u00E1lida.\r\n\ @return\ posici\u00F3n\ aleatoria\ entre\ 0\ y\ 16\r\n
+comment3.params=robot
+comment3.target=boolean\ canBeRobbedBy(Robot)
+comment3.text=\r\n\ Una\ tienda\ aut\u00F3noma\ puede\ ser\ robada\ por\ cualquier\ robot.\r\n\ @param\ robot\ robot\ que\ intenta\ robar\r\n\ @return\ true\ siempre\r\n
+numComments=4

@@ -1,9 +1,9 @@
 #BlueJ class context
 comment0.target=Store
-comment0.text=\r\n\ Representa\ una\ tienda\ en\ SilkRoad.\r\n
-comment1.params=type\ money\ pos
-comment1.target=Store(java.lang.String,\ int,\ int)
-comment1.text=\r\n\ Constructor\ de\ la\ tienda.\r\n\ @param\ type\ tipo\ de\ tienda\r\n\ @param\ money\ fondos\ de\ la\ tienda\r\n\ @param\ pos\ posici\u00F3n\ de\ la\ tienda\r\n
+comment0.text=\r\n\ Clase\ abstracta\ que\ representa\ una\ tienda\ en\ SilkRoad.\r\n
+comment1.params=type\ money\ pos\ color
+comment1.target=Store(java.lang.String,\ int,\ int,\ java.awt.Color)
+comment1.text=\r\n\ Constructor\ de\ la\ tienda.\r\n\ @param\ type\ tipo\ de\ tienda\r\n\ @param\ money\ fondos\ de\ la\ tienda\r\n\ @param\ pos\ posici\u00F3n\ de\ la\ tienda\r\n\ @param\ color\ color\ de\ la\ tienda\r\n
 comment10.params=
 comment10.target=java.lang.String\ getType()
 comment10.text=\r\n\ Indica\ el\ tipo\ de\ tienda.\r\n\ @return\ el\ tipo\ de\ la\ tienda\r\n
@@ -21,7 +21,7 @@ comment14.target=void\ resetColor()
 comment14.text=\r\n\ Resetea\ el\ color\ de\ la\ tienda\ al\ original.\r\n
 comment15.params=robot
 comment15.target=boolean\ canBeRobbedBy(Robot)
-comment15.text=\r\n\ Define\ si\ es\ posible\ ser\ robada\ una\ tienda\ tipo\ fighter\ o\ no.\r\n
+comment15.text=\r\n\ M\u00E9todo\ abstracto\ para\ determinar\ si\ un\ robot\ puede\ robar\ de\ esta\ tienda.\r\n\ @param\ robot\ robot\ que\ intenta\ robar\r\n\ @return\ true\ si\ puede\ ser\ robada\r\n
 comment2.params=amount
 comment2.target=int\ rob(int)
 comment2.text=\r\n\ Roba\ cierta\ cantidad\ de\ fondos\ de\ la\ tienda.\r\n\ @param\ amount\ cantidad\ a\ robar\r\n\ @return\ cantidad\ realmente\ robada\r\n

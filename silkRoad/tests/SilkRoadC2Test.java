@@ -1,4 +1,6 @@
-package silkRoad;
+package tests;
+import silkRoad.*;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -231,4 +233,121 @@ public class SilkRoadC2Test {
          
          assertEquals(150, game.profit());
      }
+    /**
+     * Verifica que el método days procese correctamente una secuencia de eventos.
+     */
+    @Test
+    public void accordingGVShouldProcessDaysCorrectly() {
+        int[][] events = {
+            {1, 2},      
+            {2, 3, 100}, 
+            {1, 5}       
+        };
+        
+        game.days(events);
+        assertTrue("Days debe ejecutarse correctamente", game.ok());
+        assertEquals("Debe haber 2 robots", 2, game.getRobotCount());
+        assertEquals("Debe haber 1 tienda", 1, game.getStoreCount());
+    }
+    
+    /**
+     * Verifica que days maneje correctamente eventos inválidos.
+     */
+    @Test
+    public void accordingGVShouldRejectInvalidDaysEvents() {
+        int[][] invalidEvents = {
+            {1, 2},
+            {3, 5, 100}
+        };
+        
+        game.days(invalidEvents);
+        assertFalse("Days debe rechazar eventos inválidos", game.ok());
+    }
+    
+    /**
+     * Verifica que getAllRobots retorne todos los robots correctamente.
+     */
+    @Test
+    public void accordingGVShouldGetAllRobotsCorrectly() {
+        game.placeRobot("normal", 1);
+        game.placeRobot("normal", 5);
+        game.placeRobot("tender", 10);
+        
+        List<Robot> allRobots = game.getAllRobots();
+        
+        assertEquals("Debe retornar 3 robots", 3, allRobots.size());
+        assertTrue("Debe incluir robot tender", 
+            allRobots.stream().anyMatch(r -> "tender".equals(r.getType())));
+    }
+    
+    /**
+     * Verifica que getStoreEmptyCounts retorne el conteo correcto.
+     */
+    @Test
+    public void accordingGVShouldCountEmptiedStoresCorrectly() {
+        game.placeStore("normal", 2, 50);
+        game.placeStore("normal", 4, 100);
+        
+        game.placeRobot("normal", 2);  
+        game.placeRobot("normal", 4);
+        
+        int[] counts = game.getStoreEmptyCounts();
+        
+        assertEquals("Tienda en posición 2 debe estar vaciada 1 vez", 1, counts[2]);
+        assertEquals("Tienda en posición 4 debe estar vaciada 1 vez", 1, counts[4]);
+    }
+    
+    /**
+     * Verifica que profitPerMove retorne correctamente las ganancias por movimiento.
+     */
+    @Test
+    public void accordingGVShouldTrackProfitPerMove() {
+        game.placeRobot("normal", 0);
+        game.placeStore("normal", 1, 50);
+        game.placeStore("normal", 3, 100);
+        
+        game.moveRobot(0, 1);  
+        game.moveRobot(1, 2);
+        
+        int[][] profits = game.profitPerMove();
+        
+        assertEquals("Debe haber 1 robot", 1, profits.length);
+        assertEquals("Primera ganancia debe ser 50", 50, profits[0][1]);
+        assertEquals("Segunda ganancia debe ser 100", 100, profits[0][2]);
+    }
+    
+    /**
+     * Verifica que profitPerMove maneje múltiples robots correctamente.
+     */
+    @Test
+    public void accordingGVShouldTrackMultipleRobotsProfits() {
+        game.placeStore("normal", 2, 80);
+        game.placeStore("normal", 5, 120);
+        
+        game.placeRobot("normal", 2); 
+        game.placeRobot("tender", 5); 
+        
+        int[][] profits = game.profitPerMove();
+        
+        assertEquals("Debe haber 2 robots", 2, profits.length);
+        assertTrue("Debe tener al menos una ganancia por robot", 
+            profits[0].length > 1 && profits[1].length > 1);
+    }
+    
+    /**
+     * Verifica que days acumule correctamente las ganancias día a día.
+     */
+    @Test
+    public void accordingGVShouldAccumulateProfitsInDays() {
+        int[][] events = {
+            {2, 3, 100}, 
+            {1, 3},      
+            {2, 5, 50}   
+        };
+        
+        game.days(events);
+        
+        assertEquals("El profit final debe ser 100", 100, game.profit());
+        assertEquals("Debe haber 2 tiendas", 2, game.getStoreCount());
+    }
 }

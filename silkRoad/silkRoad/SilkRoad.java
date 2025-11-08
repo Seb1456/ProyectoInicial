@@ -149,14 +149,27 @@ public class SilkRoad {
             success = false;
             return;
         }
+        
+        Store newStore;
         if ("normal".equals(type)) {
-            stores[pos] = new Store("normal", funds, pos);
+            newStore = new NormalStore(funds, pos);
         } else if ("autonomous".equals(type)) {
-            int nPos = new Random().nextInt(roadLength);
-            stores[nPos] = new Store("autonomous", funds, nPos);
+            newStore = new AutonomousStore(funds, pos);
+            pos = newStore.getPosition();
+            if (stores[pos] != null) {
+                notifyUser("Autonomous store position already occupied", JOptionPane.ERROR_MESSAGE);
+                success = false;
+                return;
+            }
         } else if ("fighter".equals(type)) {
-            stores[pos] = new Store("fighter", funds, pos);
+            newStore = new FighterStore(funds, pos);
+        } else {
+            notifyUser("Unknown store type: " + type, JOptionPane.ERROR_MESSAGE);
+            success = false;
+            return;
         }
+        
+        stores[pos] = newStore;
         fundsTotal += funds;
         updateBar();
         success = true;
@@ -199,33 +212,31 @@ public class SilkRoad {
             success = false;
             return;
         }
-        Robot robot = new Robot(type, pos);
+        
+        Robot robot;
+        if ("normal".equals(type)) {
+            robot = new NormalRobot(pos);
+        } else if ("neverback".equals(type)) {
+            robot = new NeverBackRobot(pos);
+        } else if ("tender".equals(type)) {
+            robot = new TenderRobot(pos);
+        } else if ("thief".equals(type)) {
+            robot = new ThiefRobot(pos);
+        } else {
+            notifyUser("Unknown robot type: " + type, JOptionPane.ERROR_MESSAGE);
+            success = false;
+            return;
+        }
+        
         robotPresence[pos] = 1;
         robots.get(pos).add(robot);
         
         Store store = stores[pos];
         if (store != null && store.isInStock()) {
-            int funds = store.getFunds();
-            if ("normal".equals(type) || "neverback".equals(type)){
-                robot.addProfit(funds);
-                store.depleteStock();
-                store.changeColor();
-                store.incrementEmptiedCount();
-                profit += funds;
-                updateBar();
-            }else if("tender".equals(type)){
-                int halfFunds = funds/2;
-                robot.addProfit(halfFunds);
-                store.changeColor();
-                profit += halfFunds;
-                updateBar();
-            }else if ("thief".equals(robot.getType())) {
-                int stolen = store.getFunds() / 3; 
-                robot.addProfit(stolen);
-                store.rob(stolen);
-                profit += stolen;
-                updateBar();
-            }
+            int collected = robot.collectFrom(store);
+            robot.addProfit(collected);
+            profit += collected;
+            updateBar();
         }
         success = true;
     }
@@ -249,6 +260,7 @@ public class SilkRoad {
         robotPresence[pos] = 0;
         success = true;
     }
+    
     /**
      * Mueve un robot desde una posición actual.
      * @param pos posición inicial del robot
@@ -265,45 +277,41 @@ public class SilkRoad {
             success = false;
             return;
         }
+        
         Robot robot = robots.get(pos).remove(0);
+        robotPresence[pos] = 0;
+        
+        if (steps < 0 && !robot.canMoveBackward()) {
+            notifyUser("This robot cannot move backward", JOptionPane.ERROR_MESSAGE);
+            robots.get(pos).add(robot); 
+            robotPresence[pos] = 1; 
+            success = false;
+            return;
+        }
+        
         int direction = steps > 0 ? 1 : -1;
         int stepsAbs = Math.abs(steps);
+        
         for (int i = 1; i <= stepsAbs; i++) {
             int newPos = pos + i * direction;
-
             robot.moveTo(direction, false);
-
+    
             Store store = stores[newPos];
-            if (store != null && store.isInStock() && store.canBeRobbedBy(robot)) {
-                int funds = store.getFunds();
-                if("normal".equals(robot.getType()) || "neverback".equals(robot.getType())){
-                robot.addProfit(funds);
-                store.depleteStock();
-                store.changeColor();
-                store.incrementEmptiedCount();
-                profit += funds;
+            if (store != null && store.isInStock()) {
+                int collected = robot.collectFrom(store);
+                robot.addProfit(collected);
+                profit += collected;
                 updateBar();
-                }else if ("tender".equals(robot.getType())){
-                    int halfFunds = store.getFunds()/2;
-                    robot.addProfit(halfFunds);
-                    store.changeColor();
-                    profit += halfFunds;
-                    updateBar();
-                }else if ("thief".equals(robot.getType())) {
-                    int stolen = store.getFunds() / 3; 
-                    robot.addProfit(stolen);
-                    store.rob(stolen);
-                    profit += stolen;
-                    updateBar();
-                }
             }
         }
+        
         int finalPos = pos + steps;
         robots.get(finalPos).add(robot);
-        robotPresence [finalPos] = 1;
+        robotPresence[finalPos] = 1;
         
         success = true;
     }
+    
     /**
      * Reabastece todas las tiendas vacías.
      */
