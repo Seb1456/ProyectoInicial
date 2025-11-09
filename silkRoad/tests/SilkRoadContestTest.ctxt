@@ -1,9 +1,9 @@
 #BlueJ class context
 comment0.target=SilkRoadContestTest
 comment1.params=
-comment1.target=void\ ComputeProfitsBasic()
+comment1.target=void\ computeProfitsBasic()
 comment2.params=
-comment2.target=void\ NoRobots()
+comment2.target=void\ noRobots()
 comment3.params=
-comment3.target=void\ OnlyRobots()
+comment3.target=void\ onlyRobots()
 numComments=4

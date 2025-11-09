@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Canvas extends JFrame {
+public final class Canvas extends JFrame {
     private static Canvas instance;
-    private static final int WINDOW_SIZE = 500;
+    private static int WINDOW_SIZE = 500;
 
     public static Canvas getInstance() {
         if (instance == null) {
@@ -97,7 +97,7 @@ public class Canvas extends JFrame {
         graphics.setColor(current);
     }
 
-    private class CanvasPanel extends JPanel {
+    private final class CanvasPanel extends JPanel {
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);

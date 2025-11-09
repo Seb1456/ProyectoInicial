@@ -224,7 +224,7 @@ public class SilkRoadC2Test {
     * Verifica que showRobotProfits muestre correctamente las ganancias de un robot e identifica bugs.
     */
      @Test
-     public void ShowRobotProfitsLRShouldDisplayCorrectProfits()  {
+     public void showRobotProfitsLRShouldDisplayCorrectProfits()  {
          game.placeRobot("normal", 0);
          game.placeStore("normal", 1, 50);
          game.placeStore("normal", 3, 100);

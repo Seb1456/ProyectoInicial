@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class SilkRoadContestTest {
 
     @Test
-    public void ComputeProfitsBasic() {
+    public void computeProfitsBasic() {
         SilkRoadContest contest = new SilkRoadContest();
 
         int[][] days = {
@@ -26,7 +26,7 @@ public class SilkRoadContestTest {
     }
 
     @Test
-    public void NoRobots() {
+    public void noRobots() {
         SilkRoadContest contest = new SilkRoadContest();
 
         int[][] days = {
@@ -39,7 +39,7 @@ public class SilkRoadContestTest {
     }
 
     @Test
-    public void OnlyRobots() {
+    public void onlyRobots() {
         SilkRoadContest contest = new SilkRoadContest();
 
         int[][] days = {

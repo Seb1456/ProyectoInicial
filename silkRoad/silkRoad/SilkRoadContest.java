@@ -1,4 +1,4 @@
-package silkRoad;
+package silkroad;
 
 import java.util.*;
 

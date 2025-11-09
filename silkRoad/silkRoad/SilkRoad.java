@@ -1,4 +1,4 @@
-package silkRoad;
+package silkroad;
 
 import java.util.Random;
 import javax.swing.*;
@@ -392,7 +392,7 @@ public class SilkRoad {
      * Muestra todos los objetos gráficos.
      */
     public void makeVisible() {
-        if (testing) return;
+        if (testing) {return;}
         for (int i = 0; i < MAX_LENGTH; i++) {
             for (Robot robot : robots.get(i)) {
                 robot.show(true);
@@ -407,7 +407,7 @@ public class SilkRoad {
      * Oculta todos los objetos gráficos.
      */
     public void makeInvisible() {
-        if (testing) return;
+        if (testing) {return;}
         for (int i = 0; i < MAX_LENGTH; i++) {
             for (Robot robot : robots.get(i)) {
                 robot.show(false);
@@ -432,7 +432,7 @@ public class SilkRoad {
     public int getStoreCount() {
         int count = 0;
         for (Store s : stores) {
-            if (s != null) count++;
+            if (s != null) {count++;}
         }
         return count;
     }
@@ -540,10 +540,10 @@ public class SilkRoad {
             List<Robot> robotsAtPos = new ArrayList<>(robots.get(pos));
             for (Robot robot : robotsAtPos) {
                 int steps = 1;
-                if ("neverback".equals(robot.getType())) steps = 2;
+                if ("neverback".equals(robot.getType())) {steps = 2;}
     
                 int newPos = pos + steps;
-                if (newPos >= roadLength) newPos = roadLength - 1;
+                if (newPos >= roadLength) {newPos = roadLength - 1;}
     
                 moveRobot(pos, newPos - pos);
             }
@@ -599,7 +599,6 @@ public class SilkRoad {
     public void moveRobots() {
         for (int pos = 0; pos < roadLength; pos++) {
             if (!robots.get(pos).isEmpty()) {
-                Robot robot = robots.get(pos).get(0);
                 int bestPos = -1;
                 int maxFunds = -1;
                 for (int i = 0; i < roadLength; i++) {
